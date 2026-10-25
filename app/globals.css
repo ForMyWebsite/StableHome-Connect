@@ -4417,3 +4417,24 @@ details p {
 .conversation-read .text-link {
   font-size: 10px;
 }
+
+@media (max-width: 767px) {
+  .stability-copy {
+    max-width: 100%;
+  }
+  .stability-copy h2 {
+    max-width: 230px;
+  }
+  .stability-copy p,
+  .stability-copy > small {
+    max-width: 160px;
+  }
+  .stability-copy > small {
+    font-size: 9px;
+  }
+  .stability-card .neighborhood.small {
+    width: 160px;
+    right: -15px;
+    opacity: 0.8;
+  }
+}
