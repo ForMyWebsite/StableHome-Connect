@@ -1,0 +1,1871 @@
+MASTER DEVELOPMENT PROMPT: STABLEHOME CONNECT
+Project Identity
+Build a complete, professional, mobile-first web application called StableHome Connect.
+
+Tagline: Prevent eviction. Find assistance. Stay housed.
+
+Product category: Housing stability, eviction prevention, civic technology, and community assistance.
+
+Initial geographic focus: Southeastern Pennsylvania, beginning with Delaware County and Philadelphia, with an architecture that supports expanding into additional counties and states.
+
+Primary objective: Build an accessible digital platform that helps tenants facing potential housing instability identify assistance programs, organize documents, understand relevant processes, explore repayment options, and coordinate voluntary dispute resolution with landlords and qualified housing professionals.
+
+Important: This is an independent civic-technology prototype inspired by the goals of eviction diversion programs and the proposed Stable Homes Act. It is not an official government portal, legal service, court system, financial institution, or benefits eligibility authority.
+
+The application must be functional, responsive, secure by design, and suitable for presentation at the Congressional App Challenge.
+
+Avoid creating a superficial visual mockup. Build actual working functionality with persistent data, meaningful algorithmic features, navigation, authentication, form validation, state management, and a complete demonstration workflow.
+
+SECTION 1: TECHNOLOGY STACK
+Use this preferred architecture:
+
+Frontend
+Next.js with TypeScript
+
+React
+
+Tailwind CSS
+
+Accessible, reusable UI components
+
+Lucide icons
+
+Responsive desktop and mobile layouts
+
+Progressive Web App support where feasible
+
+Backend
+Supabase PostgreSQL database
+
+Supabase Authentication
+
+Supabase Storage for private documents
+
+Server-side API routes or server functions for protected business logic
+
+Row Level Security for database access
+
+Database migrations and seed scripts
+
+Optional Libraries
+React Hook Form and Zod for input validation
+
+Recharts for charts and housing-plan visualization
+
+date-fns for date and schedule handling
+
+Vitest for unit tests
+
+Playwright for end-to-end testing
+
+Do not add unnecessary external APIs. Use deterministic local algorithms where possible.
+
+External AI services are optional. The application must remain functional without an AI API key.
+
+Create a documented .env.example file. Never expose secret credentials to the browser.
+
+SECTION 2: APPLICATION DESIGN
+Design StableHome Connect as a trustworthy, calming, modern civic-technology platform.
+
+Visual Style
+Primary color: Deep navy (#17324D)
+
+Secondary color: Teal (#147D77)
+
+Accent color: Warm gold (#D6A24A)
+
+Main background: Light gray-white (#F7F9FA)
+
+Cards: White (#FFFFFF)
+
+Primary text: Dark slate (#243447)
+
+Errors: Muted red
+
+Success: Accessible green
+
+Warnings: Amber
+
+Use accessible text contrast.
+
+Typography
+Use Inter or a similar professional sans-serif font.
+
+Typography should be readable for older adults and people with visual impairments.
+
+UI Principles
+Use simple, plain English.
+
+Avoid intimidating legal terminology wherever possible.
+
+Provide explanatory tooltips for unfamiliar terms.
+
+Show users their progress.
+
+Clearly distinguish recommendations from verified facts.
+
+Make all important actions accessible within two or three taps.
+
+Provide visible loading, success, empty, and error states.
+
+Support keyboard navigation and screen readers.
+
+Follow WCAG 2.2 AA principles.
+
+Provide a clear privacy policy and data deletion controls.
+
+Layout
+Desktop:
+
+Left sidebar navigation
+
+Main content area
+
+Optional contextual right sidebar
+
+Persistent top navigation
+
+Mobile:
+
+Single-column responsive layout
+
+Bottom navigation
+
+Large touch targets
+
+Card-based content
+
+Collapsible sections
+
+SECTION 3: LOGIN AND AUTHENTICATION
+The application MUST begin with a login screen.
+
+The initial route / should redirect to /login when the user is not authenticated.
+
+Login Screen
+Display:
+
+StableHome Connect logo
+
+Tagline
+
+Email address field
+
+Password field
+
+Show/hide password control
+
+Log In button
+
+Forgot Password link
+
+Create Account link
+
+Demo Mode button
+
+Short privacy explanation
+
+Clear indication that this is an independent prototype
+
+Use actual Supabase email/password authentication.
+
+After login, redirect users based on their verified account roles.
+
+Account Creation
+Fields:
+
+Full name
+
+Email address
+
+Password
+
+Password confirmation
+
+ZIP code
+
+Preferred language
+
+User type selection
+
+Available user types:
+
+Tenant
+
+Landlord
+
+Service-provider and administrator roles must be assigned through a restricted verification or administration process. Never allow a user to obtain privileged roles by simply editing a signup form.
+
+Onboarding
+After account creation, show a welcome screen.
+
+Ask:
+
+What would you like help with?
+
+Where is your rental property located?
+
+Would you like to create a private housing plan?
+
+Do you need immediate assistance?
+
+Provide the options:
+
+I'm having trouble paying rent
+
+I received a landlord notice
+
+I have a court-related housing issue
+
+I want to negotiate with my landlord
+
+I need housing or legal assistance
+
+I am a landlord seeking dispute resolution
+
+I'm exploring resources
+
+Do not make the user disclose highly sensitive information before accessing public resources.
+
+Demo Mode
+Provide a fully functioning demonstration mode with fictional accounts and synthetic records.
+
+Demo accounts:
+
+Tenant: Jordan Rivera
+
+Landlord: Taylor Morgan
+
+Mediator: Casey Brooks
+
+Admin: Demo Administrator
+
+Include realistic fictional cases, financial scenarios, documents, organizations, messages, and events.
+
+All demo data must be clearly marked fictional. Demo users must not have access to real user information.
+
+SECTION 4: TENANT DASHBOARD
+After login, tenants should see a personalized dashboard.
+
+Header
+Display:
+
+"Welcome back, [First Name]"
+
+Below it:
+
+"Your path toward housing stability starts here."
+
+Dashboard Components
+A. Housing Stability Status
+Display a case status such as:
+
+Getting started
+
+Assistance needed
+
+Exploring options
+
+Negotiation in progress
+
+Agreement being reviewed
+
+Plan active
+
+Case resolved
+
+Statuses are workflow categories, not guarantees of housing outcomes.
+
+B. Housing Action Plan
+Show a progress bar based on completed tasks.
+
+Example:
+
+2 of 5 recommended steps complete.
+
+Tasks include:
+
+Complete assessment
+
+Review resources
+
+Contact an organization
+
+Upload relevant documents
+
+Review negotiation options
+
+C. Recommended Assistance
+Display the three highest-ranked potentially relevant resources.
+
+Each card should include:
+
+Organization name
+
+Assistance type
+
+Service area
+
+Verified contact information
+
+Eligibility summary
+
+Match explanation
+
+Last verified date
+
+Website or application link
+
+D. Important Dates
+Display:
+
+User-entered notice dates
+
+Appointment dates
+
+Document submission reminders
+
+Negotiation meetings
+
+Payment plan dates
+
+Distinguish user-entered dates from officially verified appointments or deadlines.
+
+E. Quick Actions
+Buttons:
+
+Find Assistance
+
+Start Housing Assessment
+
+Open Mediation Hub
+
+My Documents
+
+View Action Plan
+
+Explore Repayment Options
+
+F. Recent Activity
+Display timestamped events such as:
+
+Resource saved
+
+Assessment updated
+
+Document uploaded
+
+Message received
+
+Meeting scheduled
+
+Action plan completed
+
+SECTION 5: HOUSING ASSESSMENT
+Create a multi-step questionnaire that helps the user describe their housing situation.
+
+Step 1: Location
+Collect:
+
+State
+
+County
+
+ZIP code
+
+Optional city
+
+Initially support Philadelphia and Delaware County.
+
+Maintain a jurisdiction configuration database so additional locations can be added later.
+
+Validate ZIP code format and resolve county using a verified ZIP-to-county mapping. Account for ZIP codes that overlap jurisdictions.
+
+If the system cannot determine jurisdiction reliably, request county confirmation.
+
+Step 2: Housing Status
+Ask:
+
+Are you currently renting?
+
+Are you behind on rent?
+
+Have you received a notice?
+
+Has a court case been filed?
+
+Do you have an upcoming hearing?
+
+Are utilities or repairs involved?
+
+Would you prefer help communicating with your landlord?
+
+Step 3: Financial Circumstances
+Optional inputs:
+
+Monthly rent
+
+Amount of unpaid rent
+
+Approximate monthly household income
+
+Essential monthly expenses
+
+Expected future income changes
+
+Approximate household size
+
+Do not require Social Security numbers, bank account credentials, immigration status, medical records, or other unnecessary sensitive information.
+
+Step 4: Assistance Preferences
+Ask:
+
+Interested in financial assistance?
+
+Interested in legal help?
+
+Interested in mediation?
+
+Interested in housing counseling?
+
+Preferred communication method?
+
+Preferred language?
+
+Need accessible communication support?
+
+Step 5: Assessment Results
+Generate:
+
+A plain-language summary
+
+A list of potential support options
+
+An editable action plan
+
+Suggested assistance categories
+
+Relevant verified resources
+
+An explanation of why each resource was recommended
+
+Never claim that the assessment determines legal rights, financial eligibility, court status, or an actual eviction probability.
+
+If the user reports an active court case, imminent deadline, lockout, or immediate safety concern, prominently provide appropriate verified contact information and recommend prompt contact with qualified human assistance.
+
+Do not present mediation as a replacement for urgent legal help.
+
+SECTION 6: RESOURCE MATCHING ENGINE
+This is one of the main computational features.
+
+Build a transparent, deterministic matching engine that compares a tenant's profile against a database of verified assistance programs.
+
+Resource Categories
+Rental assistance
+
+Legal aid
+
+Eviction prevention
+
+Housing counseling
+
+Mediation services
+
+Emergency housing
+
+Utility assistance
+
+Benefits counseling
+
+Community support
+
+Resource Database Fields
+Each resource should include:
+
+Unique ID
+
+Organization name
+
+Description
+
+Category
+
+Service ZIP codes
+
+Service counties
+
+State
+
+Website
+
+Contact number
+
+Physical address if applicable
+
+Application method
+
+Eligibility notes
+
+Income criteria when published
+
+Assistance offered
+
+Whether an appointment is required
+
+Application status when verified
+
+Last verified date
+
+Source URL
+
+Administrative review status
+
+Matching Algorithm
+Implement a score-based recommendation algorithm.
+
+Begin with jurisdiction filtering.
+
+Exclude programs that are confirmed not to serve the user's jurisdiction.
+
+Then calculate a relevance score from 0 to 100.
+
+Suggested weights:
+
+Geographic match: 30 points
+
+Service category match: 25 points
+
+Published eligibility alignment: 20 points
+
+Urgency appropriateness: 15 points
+
+Language/accessibility match: 10 points
+
+Unknown eligibility should not automatically disqualify users.
+
+For example:
+
+A tenant in Delaware County experiencing overdue rent would likely receive higher matches for resources serving Delaware County that provide rental assistance.
+
+A resource serving only Philadelphia would generally not be presented as a local match for a Delaware County resident unless its official service area includes them.
+
+Algorithm Requirements
+Explain why each resource matches.
+
+Do not fabricate eligibility information.
+
+Do not fabricate available funding.
+
+Do not claim application acceptance unless confirmed.
+
+Display a confidence or completeness indicator based on available program information.
+
+Handle missing information gracefully.
+
+Rank results deterministically.
+
+Support filters and sorting.
+
+Provide links to official sources.
+
+Save the user's selected resources.
+
+The ranking score measures relevance, not probability of acceptance.
+
+Resource Search UI
+Create a page at /resources.
+
+Include:
+
+Search bar
+
+County filter
+
+Category filter
+
+Eligibility information
+
+Resource cards
+
+Saved resources tab
+
+Contact buttons
+
+Last-updated indicators
+
+Provide seeded examples from verified public organizations serving southeastern Pennsylvania.
+
+Keep the resource database editable through an administrator dashboard.
+
+SECTION 7: MEDIATION AND NEGOTIATION HUB
+Create /mediation.
+
+This is a secure, voluntary discussion workspace for tenant-landlord dispute resolution.
+
+The application must NOT claim to enroll users in any official court or municipal mediation program.
+
+The system should clearly distinguish:
+
+Informal private negotiation
+
+Referral to a qualified mediator
+
+Official external eviction diversion programs
+
+Case Creation
+A tenant or landlord may open a voluntary discussion request.
+
+Required information:
+
+General issue category
+
+Jurisdiction
+
+Short description
+
+Optional proposed resolution
+
+Permission to invite the other participant
+
+Participant Invitations
+Invite the other party using a secure, expiring invitation token.
+
+The invited person must create or verify an account before viewing the shared workspace.
+
+Participants must explicitly accept the invitation.
+
+Do not automatically reveal a tenant's assistance profile, financial details, legal documents, or private account information to a landlord.
+
+Case Workspace
+Display:
+
+Case overview
+
+Participants
+
+Messages
+
+Shared documents
+
+Proposed agreements
+
+Scheduled discussions
+
+Case activity history
+
+Secure Messaging
+Support:
+
+Text messages
+
+Timestamps
+
+Read status
+
+Basic attachment sharing
+
+Notification preferences
+
+Blocking and reporting abuse
+
+Private support contact information
+
+Implement appropriate access controls.
+
+Messaging must not be publicly accessible.
+
+Avoid using unmoderated AI to provide legal advice or pressure participants into accepting agreements.
+
+Repayment Proposal Builder
+Allow a participant to propose:
+
+Amount under discussion
+
+Initial proposed payment
+
+Number of payments
+
+Payment frequency
+
+Proposed start date
+
+Calculate the resulting schedule.
+
+Allow the other participant to:
+
+Review
+
+Accept for further discussion
+
+Reject
+
+Suggest changes
+
+Request a mediator
+
+Proposal History
+Maintain versions of proposed agreements.
+
+Do not allow a participant to silently modify a previously accepted proposal.
+
+Display which version each participant reviewed.
+
+Agreement Documentation
+For a prototype, generate a plain-language negotiation summary.
+
+Do not automatically create binding legal contracts or represent that a generated agreement complies with local law.
+
+Display a warning recommending qualified legal review before anyone signs or relies on a legal agreement.
+
+Safety Protections
+Participation must be voluntary.
+
+Users may leave or report a discussion.
+
+Provide direct access to legal assistance.
+
+Never imply that accepting an agreement automatically pauses an eviction case.
+
+Never imply that the app can extend court deadlines.
+
+Preserve evidence according to clear retention policies.
+
+Allow users to access their own records.
+
+Do not expose private data across accounts.
+
+SECTION 8: REPAYMENT AND AFFORDABILITY PLANNER
+Create /planner.
+
+This feature helps users visualize possible repayment schedules.
+
+Required Inputs
+Rent arrears being discussed
+
+Proposed initial payment
+
+Remaining payment count
+
+Payment interval
+
+Expected monthly available amount
+
+Optional future rent obligation
+
+Core Calculation
+Remaining balance = Total arrears - Initial payment
+
+Installment amount = Remaining balance / Number of installments
+
+Calculate all financial values using integer cents or a decimal-safe currency library.
+
+Distribute any rounding difference across installments while preserving the exact total.
+
+Affordability Estimate
+Available amount = Monthly income - Essential monthly expenses - Current rent obligation
+
+Compare proposed monthly repayment obligations against this estimated amount.
+
+Show:
+
+Proposed payment
+
+Estimated remaining household funds
+
+Warning if obligations exceed the user's estimate
+
+Remaining balance over time
+
+Do not describe a proposed plan as affordable, safe, legally enforceable, or financially appropriate based solely on a mathematical result.
+
+Visualizations
+Include:
+
+Balance-over-time line chart
+
+Repayment schedule table
+
+Payment dates
+
+Alternative scenarios
+
+Provide a slider to change installment counts and instantly recalculate results.
+
+Show at least three scenarios:
+
+Shorter repayment schedule
+
+Balanced repayment schedule
+
+Longer repayment schedule
+
+Clearly explain tradeoffs.
+
+Never automatically send a proposal to a landlord without explicit user action.
+
+SECTION 9: DIVERSION NAVIGATOR
+Create /navigator.
+
+This section is a personalized educational workflow guide.
+
+Supported Case Stages
+Early housing concern
+
+Rent payment issue
+
+Landlord notice received
+
+Court case reported
+
+Preparing for a meeting
+
+Negotiation ongoing
+
+Agreement in progress
+
+Continuing housing support
+
+Workflow Engine
+The app should generate tasks according to:
+
+User's location
+
+Reported case stage
+
+Assistance needs
+
+User-entered dates
+
+Verified local program information
+
+Task Examples
+Review your notice
+
+Save relevant documents
+
+Contact a legal aid organization
+
+Review local diversion program information
+
+Prepare questions for a housing counselor
+
+Record your upcoming appointment
+
+Review available financial assistance
+
+Prepare for a scheduled mediation
+
+Deadline Management
+Users can manually enter important dates.
+
+Use a date calculator to show countdowns.
+
+Example:
+
+Upcoming appointment: November 12.
+
+The app can calculate the number of days remaining.
+
+However:
+
+Do not infer legally binding deadlines from uploaded documents without verified rules and human review.
+
+Do not assume every jurisdiction follows the same timeline.
+
+Never invent court dates.
+
+Identify the source of every deadline.
+
+Distinguish confirmed dates from user-provided dates.
+
+Provide reminders without representing them as official court notifications.
+
+External Program Links
+For locations with official eviction diversion programs, link to those platforms.
+
+Clearly label external government or organizational websites.
+
+Do not falsely show submitted official applications unless integration with the responsible organization is actually implemented and authorized.
+
+SECTION 10: DOCUMENT MANAGEMENT
+Create /documents.
+
+Build a secure document vault.
+
+Supported Formats
+PDF
+
+JPG
+
+PNG
+
+Document Categories
+Lease
+
+Landlord correspondence
+
+Rent payment records
+
+Court-related documents
+
+Financial assistance documents
+
+Mediation notes
+
+Other
+
+Features
+Upload
+
+Rename
+
+Categorize
+
+Preview
+
+Download
+
+Delete
+
+Selectively share
+
+View sharing permissions
+
+Use private storage.
+
+Validate file types and sizes on the server.
+
+Use short-lived authorized download links.
+
+Never expose documents in public storage.
+
+Do not share uploaded documents with landlords or external organizations by default.
+
+Optional Advanced Feature
+Provide a document checklist assistant that recommends which kinds of documents may be useful for an upcoming consultation.
+
+An optional OCR feature may extract text for the user's review, but never treat OCR output as authoritative.
+
+Avoid automated interpretations of legal notices without professional review.
+
+SECTION 11: INFORMAL SUPPORT AND BENEFITS EDUCATION
+Create /benefits.
+
+This section provides educational information about informal help from family, friends, or community members.
+
+Examples:
+
+Groceries provided by a relative
+
+Temporary help with housing expenses
+
+Family support with utilities
+
+Other community assistance
+
+Core Functionality
+Allow users to privately log:
+
+Date
+
+Support category
+
+Optional description
+
+Optional estimated value
+
+Notes
+
+Provide a categorized history.
+
+Important Legal Distinction
+Do not combine Supplemental Security Income, SNAP, rental assistance, and federal housing benefits into one eligibility formula.
+
+These programs have different rules.
+
+Display an explanation that the treatment of informal support varies by benefit program and applicable regulations.
+
+Provide verified informational links and benefits counseling resources.
+
+Do not state that logging a gift or expense inside the app protects eligibility.
+
+Do not claim that the proposed 2026 legislation has become law.
+
+For the competition prototype, implement this as an educational support log rather than an automatic benefits eligibility calculator.
+
+SECTION 12: LANDLORD DASHBOARD
+Create /landlord.
+
+After login, landlords see a dashboard focused on voluntary dispute resolution.
+
+Main Components
+Active discussion requests
+
+Pending invitations
+
+Proposed repayment schedules
+
+Upcoming meetings
+
+Shared documents
+
+Messages
+
+Resolved discussions
+
+Landlord Actions
+Accept or decline voluntary discussion invitations
+
+Create a discussion request
+
+View authorized case details
+
+Submit a repayment proposal
+
+Respond to proposals
+
+Request a qualified mediator
+
+Record mutually acknowledged progress
+
+Close a resolved discussion
+
+Landlords must not have access to private tenant resource searches, benefit logs, income information, or legal-aid interactions without explicit authorization.
+
+The platform must not facilitate harassment, threatening messages, discriminatory screening, or retaliation.
+
+SECTION 13: SERVICE PROVIDER DASHBOARD
+Create /provider.
+
+This interface is for verified legal aid providers, housing counselors, and mediators.
+
+Main Components
+Assigned cases
+
+Client requests
+
+Appointment calendar
+
+Task checklist
+
+Secure communications
+
+Case history
+
+Referral status
+
+Provider Verification
+Only administrators may approve provider accounts.
+
+Provider credentials and organizational affiliation must be verified before providing actual services.
+
+Demo accounts can simulate the provider workflow but must be labeled fictional.
+
+Provider Actions
+Accept an assigned or requested case
+
+Review information voluntarily shared by a client
+
+Schedule a consultation
+
+Suggest relevant services
+
+Update case notes
+
+Change referral status
+
+Document outcomes
+
+The platform must not suggest that a provider has accepted a referral merely because an automated match occurred.
+
+SECTION 14: ADMINISTRATOR DASHBOARD
+Create /admin.
+
+Provide a restricted interface for platform administration.
+
+Features
+Review resource listings
+
+Add and edit verified organizations
+
+Manage service areas
+
+Approve provider accounts
+
+Manage demo data
+
+Review moderation reports
+
+Inspect aggregate case metrics
+
+Configure jurisdictions
+
+Review outdated information
+
+Data Analytics
+Show:
+
+Number of assessments completed
+
+Number of resource matches displayed
+
+Number of resource links opened
+
+Number of voluntary negotiations created
+
+Number of agreements recorded
+
+Number of active workflows
+
+Number of reported resolved cases
+
+Distinguish engagement metrics from verified housing outcomes.
+
+Do not assume that a completed workflow means an eviction was prevented.
+
+Avoid exposing personally identifiable tenant information in aggregate analytics.
+
+Apply small-group suppression when reporting data that could indirectly identify individuals.
+
+SECTION 15: DATABASE DESIGN
+Create a normalized PostgreSQL schema.
+
+Suggested tables:
+
+profiles
+id
+
+user_id
+
+display_name
+
+email
+
+role
+
+preferred_language
+
+created_at
+
+updated_at
+
+tenant_assessments
+id
+
+tenant_id
+
+jurisdiction_id
+
+housing_status
+
+issue_category
+
+income_estimate
+
+rent_amount
+
+arrears_amount
+
+household_size
+
+created_at
+
+updated_at
+
+jurisdictions
+id
+
+state
+
+county
+
+city
+
+configuration_version
+
+zip_jurisdictions
+zip_code
+
+jurisdiction_id
+
+source
+
+verified_at
+
+assistance_resources
+id
+
+organization
+
+category
+
+description
+
+website
+
+phone
+
+eligibility_rules_json
+
+intake_status
+
+last_verified_at
+
+source_url
+
+active
+
+resource_service_areas
+resource_id
+
+jurisdiction_id
+
+resource_matches
+id
+
+assessment_id
+
+resource_id
+
+score
+
+reasons_json
+
+calculated_at
+
+cases
+id
+
+jurisdiction_id
+
+creator_id
+
+status
+
+issue_type
+
+created_at
+
+updated_at
+
+case_participants
+case_id
+
+user_id
+
+participant_role
+
+accepted_at
+
+permissions_json
+
+invitations
+id
+
+case_id
+
+invitation_token_hash
+
+invitee_email
+
+expires_at
+
+accepted_at
+
+messages
+id
+
+case_id
+
+sender_id
+
+content
+
+created_at
+
+proposals
+id
+
+case_id
+
+created_by
+
+version
+
+terms_json
+
+status
+
+created_at
+
+documents
+id
+
+owner_id
+
+storage_path
+
+category
+
+filename
+
+uploaded_at
+
+document_permissions
+document_id
+
+authorized_user_id
+
+access_type
+
+action_items
+id
+
+user_id
+
+case_id
+
+title
+
+description
+
+due_date
+
+date_source
+
+status
+
+appointments
+id
+
+case_id
+
+scheduled_at
+
+timezone
+
+participant_ids
+
+confirmation_status
+
+benefit_support_logs
+id
+
+user_id
+
+support_type
+
+description
+
+value_estimate
+
+recorded_date
+
+notifications
+id
+
+user_id
+
+category
+
+message
+
+read_at
+
+created_at
+
+case_events
+id
+
+case_id
+
+actor_id
+
+event_type
+
+metadata_json
+
+created_at
+
+administrative_audit_logs
+id
+
+actor_id
+
+action
+
+resource_type
+
+resource_id
+
+timestamp
+
+Add appropriate foreign keys, indexes, constraints, and database migrations.
+
+Use UUID identifiers and UTC timestamps.
+
+SECTION 16: AUTHORIZATION AND SECURITY
+Security is a core requirement because the system handles sensitive housing information.
+
+Implement:
+
+Supabase Authentication
+
+Role-based permissions
+
+Row Level Security on user data tables
+
+Server-side validation
+
+Private document storage
+
+Protected API routes
+
+Restricted administrator operations
+
+Secure invitation tokens
+
+Rate limiting on sensitive endpoints
+
+Audit logging for privileged changes
+
+Account deletion
+
+Data minimization
+
+Secure session handling
+
+Appropriate error handling
+
+A tenant may read or update only their own private assessment.
+
+A landlord may access only cases in which they are an authorized participant.
+
+A provider may access only assigned or explicitly authorized case information.
+
+An administrator must not automatically receive unrestricted access to private document content solely because of their role.
+
+Keep demo data isolated from real user data.
+
+Do not use real eviction records or financial documents in the competition demo.
+
+SECTION 17: NOTIFICATIONS
+Create an in-app notification center.
+
+Supported categories:
+
+New message
+
+Invitation received
+
+Invitation accepted
+
+Proposal updated
+
+Appointment approaching
+
+User-entered task deadline approaching
+
+Resource information updated
+
+Document checklist reminder
+
+Each notification includes:
+
+Title
+
+Description
+
+Timestamp
+
+Read/unread status
+
+Relevant destination
+
+Provide notification preferences.
+
+For the initial prototype, in-app notifications are sufficient.
+
+Optional email notifications may be added if a properly configured provider is available.
+
+Never claim a notification was sent externally when only an in-app record was created.
+
+SECTION 18: COMPLETE ROUTE STRUCTURE
+Implement the following pages:
+
+Public:
+
+/
+
+/login
+
+/signup
+
+/forgot-password
+
+/about
+
+/privacy
+
+/demo
+
+Tenant:
+
+/dashboard
+
+/assessment
+
+/assessment/results
+
+/resources
+
+/resources/[id]
+
+/mediation
+
+/mediation/[id]
+
+/planner
+
+/navigator
+
+/documents
+
+/benefits
+
+/notifications
+
+/settings
+
+Landlord:
+
+/landlord
+
+/landlord/cases
+
+/landlord/cases/[id]
+
+Provider:
+
+/provider
+
+/provider/cases
+
+/provider/cases/[id]
+
+Administrator:
+
+/admin
+
+/admin/resources
+
+/admin/providers
+
+/admin/analytics
+
+/admin/jurisdictions
+
+Protected routes must redirect unauthenticated users to login.
+
+Users must not access dashboards associated with roles they do not hold.
+
+SECTION 19: DEMONSTRATION SCENARIO
+Seed a complete fictional demonstration.
+
+Tenant Profile
+Name: Jordan Rivera
+
+Location: Delaware County, Pennsylvania
+
+Monthly rent: $1,500
+
+Outstanding rent: $1,200
+
+Monthly household income estimate: $2,800
+
+Essential non-rent expenses: $750
+
+Case stage: Early housing concern, no filed court case
+
+All of these values are fictional.
+
+Scenario
+Jordan logs into StableHome Connect.
+
+Jordan completes the housing assessment.
+
+The matching engine identifies relevant categories and seeded local assistance resources.
+
+Jordan selects a resource and opens its verified contact information.
+
+Jordan creates a voluntary discussion request.
+
+Taylor Morgan, the fictional landlord, accepts an invitation.
+
+Jordan proposes a repayment schedule:
+
+Outstanding amount: $1,200
+
+Initial payment: $200
+
+Remaining balance: $1,000
+
+Five installments: $200 each
+
+The system displays a schedule and compares estimated obligations with user-entered budget information.
+
+Taylor proposes a minor revision.
+
+Both parties review the proposal history.
+
+A fictional mediator account can review the discussion only after both required permissions are granted.
+
+The user saves a negotiation summary and adds follow-up tasks.
+
+The case changes to "Plan active" after the participants record their agreed next steps.
+
+Do not mark the case as an officially prevented eviction. For the fictional demo, clearly show the outcome as a simulated successful negotiation.
+
+SECTION 20: TESTING AND QUALITY ASSURANCE
+Write automated tests for critical logic.
+
+Matching Tests
+Correct geographic matching
+
+Correct category ranking
+
+Correct scoring totals
+
+Exclusion of confirmed out-of-area programs
+
+Missing data handling
+
+Deterministic output
+
+Financial Tests
+Correct installment totals
+
+Correct rounding
+
+Zero balance
+
+Invalid negative inputs
+
+Installment validation
+
+Date schedule generation
+
+Authentication Tests
+Login success
+
+Invalid credentials
+
+Logout
+
+Protected route redirects
+
+Role-based access
+
+Permission Tests
+Tenant cannot read another tenant's assessment
+
+Landlord cannot access private tenant documents
+
+Unverified provider cannot access privileged tools
+
+Expired case invitation cannot be accepted
+
+Unauthorized users cannot read case messages
+
+Workflow Tests
+Assessment creation
+
+Resource match generation
+
+Case invitation
+
+Invitation acceptance
+
+Proposal revision
+
+Message creation
+
+Task completion
+
+Notification display
+
+Accessibility Tests
+Keyboard navigation
+
+Accessible form labels
+
+Form error announcements
+
+Color contrast
+
+Mobile responsiveness
+
+SECTION 21: IMPLEMENTATION ORDER
+Build the application incrementally in the following order.
+
+Phase 1 — Foundation
+Project setup
+
+Styling system
+
+Authentication
+
+User roles
+
+Database schema
+
+Protected routes
+
+Navigation
+
+Phase 2 — Tenant Experience
+Onboarding
+
+Assessment form
+
+Tenant dashboard
+
+Case status
+
+Action plan
+
+Phase 3 — Matching Engine
+Resource database
+
+County filtering
+
+Matching algorithm
+
+Match explanations
+
+Resource search and filters
+
+Phase 4 — Negotiation
+Case creation
+
+Participant invitations
+
+Messaging
+
+Proposal generation
+
+Proposal version history
+
+Phase 5 — Financial Tools
+Repayment schedule calculator
+
+Scenario comparison
+
+Financial charts
+
+Phase 6 — Supporting Features
+Document vault
+
+Diversion navigator
+
+Benefits education
+
+Notification center
+
+Phase 7 — Provider and Administrator Interfaces
+Provider dashboard
+
+Case access permissions
+
+Admin resource management
+
+Aggregate analytics
+
+Phase 8 — Polish and Testing
+End-to-end tests
+
+Security verification
+
+Accessibility improvements
+
+Realistic demonstration data
+
+Responsive design
+
+Loading and error states
+
+Deployment instructions
+
+Finish and test each phase before moving to the next.
+
+Do not claim unfinished components are functional.
+
+SECTION 22: DEFINITION OF DONE
+The application is considered complete when:
+
+The login system works.
+
+Accounts and role permissions persist.
+
+A tenant can complete an assessment.
+
+The resource matching algorithm produces explainable results.
+
+Resources are retrieved from the database.
+
+A tenant can create an action plan.
+
+Two demo accounts can participate in a shared negotiation case.
+
+Messages and proposals persist after refreshing.
+
+The repayment planner calculates correct schedules.
+
+Documents are privately stored.
+
+A landlord cannot access unauthorized tenant data.
+
+The navigator displays appropriate tasks and reminders.
+
+The administrator can manage resources.
+
+The application works on mobile and desktop.
+
+Automated tests for critical features pass.
+
+A complete fictional demonstration can be performed.
+
+The system clearly indicates that it is an independent educational prototype.
+
+Include a README documenting installation, configuration, testing, architecture, database migrations, demonstration accounts, known limitations, and future improvements.
+
+FINAL DEVELOPMENT INSTRUCTION
+Build StableHome Connect as a sophisticated, polished, mobile-first civic-technology application.
+
+Prioritize real user interaction and functional computation over superficial design.
+
+The application should demonstrate:
+
+Meaningful community impact
+
+Original integration of existing assistance pathways
+
+Practical algorithm design
+
+Full-stack software development
+
+Secure multi-user workflows
+
+Accessible interface design
+
+Responsible handling of sensitive information
+
+The central user experience should always remain simple:
+
+Log in → Describe your situation → Find help → Create a plan → Coordinate a resolution → Track progress.
+
+Use realistic fictional data for demonstrations.
+
+Do not fabricate government partnerships, case filings, verified assistance approvals, professional credentials, financial transactions, or legal outcomes.
+
+Deliver a working application with maintainable code and a complete demonstration flow.
