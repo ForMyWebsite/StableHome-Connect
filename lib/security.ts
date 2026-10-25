@@ -14,8 +14,15 @@ export function siteOrigin(request: Request) {
 }
 export function assertSameOrigin(request: Request) {
   const origin = request.headers.get('origin');
-  if (!origin || origin !== siteOrigin(request))
-    throw new Error('Please submit this form from the app itself.');
+  const fetchSite = request.headers.get('sec-fetch-site');
+  // Browsers control this forbidden header. A forwarding proxy may rewrite Origin,
+  // but cannot turn a cross-site browser request into a same-origin browser fetch.
+  if (origin && origin !== 'null' && fetchSite === 'same-origin') return;
+  const expected = siteOrigin(request);
+  if (!origin || origin === 'null' || fetchSite === 'cross-site' || origin !== expected)
+    throw new Error(
+      `Please submit from ${expected}. Received origin: ${origin || 'missing'}. Check SITE_URL and restart the app.`,
+    );
 }
 // Single-instance guard for local/Codespaces use. Supabase also enforces Auth limits.
 // ponytail: counters are process-local; use a shared store before horizontal deployment.

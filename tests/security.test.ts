@@ -31,3 +31,30 @@ describe('origin checks behind a local Next.js listener', () => {
     );
   });
 });
+
+describe('browser Fetch Metadata behind HTTPS forwarding', () => {
+  it('accepts browser-confirmed same-origin posts when the proxy rewrites the origin', () => {
+    vi.stubEnv('SITE_URL', 'https://example-3000.app.github.dev');
+    const req = new Request('http://localhost:3000/api/auth', {
+      headers: { origin: 'http://localhost:3000', 'sec-fetch-site': 'same-origin' },
+    });
+    expect(() => assertSameOrigin(req)).not.toThrow();
+  });
+  it.each(['cross-site', 'same-site'])('rejects %s requests from another origin', (fetchSite) => {
+    vi.stubEnv('SITE_URL', 'https://example-3000.app.github.dev');
+    const req = new Request('http://localhost:3000/api/auth', {
+      headers: { origin: 'https://attacker.example', 'sec-fetch-site': fetchSite },
+    });
+    expect(() => assertSameOrigin(req)).toThrow();
+  });
+  it('rejects missing and opaque origins even with a same-origin metadata value', () => {
+    for (const origin of ['', 'null'])
+      expect(() =>
+        assertSameOrigin(
+          new Request('http://localhost:3000/api/auth', {
+            headers: { origin, 'sec-fetch-site': 'same-origin' },
+          }),
+        ),
+      ).toThrow();
+  });
+});
